@@ -22,3 +22,10 @@
 - name: Install telegraf
   apt: pkg=telegraf
   notify: telegraf-start
+
+- name: Add user telegraf to given groups to be able read some stat
+  user:
+    name: "{{ telegraf.user }}"
+    group: "{{ telegraf.group }}"
+    groups: "{{ telegraf.groups }}"
+    update_password: on_create
