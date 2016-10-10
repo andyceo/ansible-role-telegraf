@@ -1,0 +1,20 @@
+---
+
+allow_duplicates: no
+
+galaxy_info:
+  author: andyceo
+  description: Install telegraf, a useful agent to grab metrics
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.5
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+  categories:
+    - system
+    - development
+    - monitoring
+    - metrics
+    - tick
+    - influx

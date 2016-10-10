@@ -1,0 +1,21 @@
+---
+
+- name: telegraf-start
+  service:
+    name=telegraf
+    state=started
+
+- name: telegraf-stop
+  service:
+    name=telegraf
+    state=stopped
+
+- name: telegraf-reload
+  service:
+    name=telegraf
+    state=reloaded
+
+- name: telegraf-restart
+  service:
+    name=telegraf
+    state=restarted
