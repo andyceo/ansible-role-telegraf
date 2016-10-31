@@ -3,6 +3,7 @@
 telegraf:
   apt_key_url: https://repos.influxdata.com/influxdb.key
   apt_repository: deb https://repos.influxdata.com/ubuntu {{ ansible_distribution_release }} stable
+  apt_repository_filename: influxdb # .list extension will be added automatically. @see https://docs.influxdata.com/telegraf/v1.0/introduction/installation/
   user: telegraf
   group: telegraf
   groups: "docker"
