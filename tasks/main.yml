@@ -2,9 +2,12 @@
 
 - name: Install dependencies for Ansible apt* modules
   command: apt-get -y install python-apt aptitude
+  args:
+    warn: no
   register: telegraf_apt_dependencies_installed
   changed_when: "'is already the newest version' not in telegraf_apt_dependencies_installed.stdout"
   tags:
+    - telegraf-repository-key
     - telegraf-repository
 
 - name: Add InfluxData repository key
@@ -12,6 +15,7 @@
     url: "{{ telegraf.apt_key_url }}"
     state: present
   tags:
+    - telegraf-repository-key
     - telegraf-repository
 
 - name: Install python-pycurl to make apt_repository module workable
