@@ -50,3 +50,13 @@
     update_password: on_create
     append: yes
   when: telegraf.groups and telegraf_groups.stdout_lines
+
+- name: Add to user telegraf ability to run specified commands as superuser without prompting password
+  copy:
+    content: "{{ telegraf.user }} ALL= NOPASSWD:{{ telegraf.sudo_without_password_commands | join(',') }}\n"
+    dest: /etc/sudoers.d/{{ telegraf.user }}
+    owner: root
+    group: root
+    mode: "0440"
+    validate: 'visudo -cf %s'
+  when: telegraf.sudo_without_password_commands is defined and telegraf.sudo_without_password_commands

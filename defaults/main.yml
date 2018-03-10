@@ -8,3 +8,5 @@ telegraf:
   group: telegraf
   groups:
     - docker
+  sudo_without_password_commands:
+    - /usr/sbin/smartctl
