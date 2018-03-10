@@ -36,9 +36,17 @@
   apt: pkg=telegraf
   notify: telegraf-restart
 
+- name: Get all available groups on host
+  shell: /usr/bin/getent group | awk -F":" '{print $1}' | grep -E '{{ telegraf.groups | join("|") }}' | cat
+  register: telegraf_groups
+  changed_when: false
+  when: telegraf.groups
+
 - name: Add user telegraf to given groups to be able read some stat
   user:
     name: "{{ telegraf.user }}"
     group: "{{ telegraf.group }}"
-    groups: "{{ telegraf.groups }}"
+    groups: "{{ telegraf_groups.stdout_lines | join(',') }}"
     update_password: on_create
+    append: yes
+  when: telegraf.groups and telegraf_groups.stdout_lines
