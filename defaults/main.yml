@@ -9,4 +9,6 @@ telegraf:
   groups:
     - docker
   sudo_without_password_commands:
+    - /sbin/iptables
+    - /usr/bin/fail2ban-client
     - /usr/sbin/smartctl
