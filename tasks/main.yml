@@ -33,6 +33,7 @@
     repo="{{ telegraf.apt_repository }}"
     state=present
     update_cache=yes
+  notify: telegraf-restart
   tags:
     - telegraf-repository
 
