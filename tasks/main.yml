@@ -14,6 +14,13 @@
     - telegraf-repository-key
     - telegraf-repository
 
+- name: Install apt-key dependency (gnupg)
+  apt:
+    package: gnupg
+  tags:
+    - telegraf-repository-key
+    - telegraf-repository
+
 - name: Add InfluxData repository key
   apt_key:
     url: "{{ telegraf.apt_key_url }}"
